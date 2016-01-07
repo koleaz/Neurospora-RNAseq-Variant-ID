@@ -2,12 +2,10 @@
 This readme describes the various shell scripts and commands used to
 identify Single Nucleotide Variants from RNAseq data of _Neurospora
 crassa_ strains in the nuclear and mitochondrial genome. This analysis
-is for the paper (Beyond Animals and Plants: Dynamic Maternal Effects in
-the Fungus Neurospora crassa)[] These scripts follow the (Broad
-Institute's GATK RNAseq variant calling best
-practices)[https://www.broadinstitute.org/gatk/guide/article?id=3891]
+is for the supplement Analysis S2 in the paper [Beyond Animals and Plants: Dynamic Maternal Effects in the Fungus Neurospora crassa](http://dx.doi.org/10.1101/028092) These scripts follow the 
+[Broad Institute's GATK RNAseq variant calling best practices](https://www.broadinstitute.org/gatk/guide/article?id=3891)
 
-The shell scripts are listed in the order in which they should be run.
+The shell scripts are listed below in the order in which they should be run.
 
 Most of these shell scripts \(with "_array_" appended to description\) are
 made to be run as array jobs on a cluster using SLURM with the following
