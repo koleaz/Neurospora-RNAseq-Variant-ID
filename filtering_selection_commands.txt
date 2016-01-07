@@ -1,0 +1,54 @@
+#filtering commands
+
+#GATK recommended quality filtering for nuclear + mitochondrial genome
+java -Xmx16g -jar /n/sw/fasrcsw/apps/Core/GenomeAnalysisTK/3.4.46-fasrc01/GenomeAnalysisTK.jar \
+-T VariantFiltration \
+-R /n/regal/pringle_lab/koleaz/mitosnps/nc12_mito_star.fa \
+-V 2mm_joint_genotype.vcf \
+-window 35 \
+-cluster 3 \
+-filterName FS \
+-filter "FS > 30.0" \
+-filterName QD \
+-filter "QD < 2.0" \
+-o 2mm_joint_genotype_filtered.vcf
+
+#GATK recommended quality filtering for mitochondrial genome
+java -Xmx16g -jar /n/sw/fasrcsw/apps/Core/GenomeAnalysisTK/3.4.46-fasrc01/GenomeAnalysisTK.jar \
+-T VariantFiltration \
+-R /n/regal/pringle_lab/koleaz/mitosnps/mito.fa \
+-V mito_joint_genotype.vcf \
+-window 35 \
+-cluster 3 \
+-filterName FS \
+-filter "FS > 30.0" \
+-filterName QD \
+-filter "QD < 2.0" \
+-o mito_joint_genotype_filtered.vcf
+
+#selecting biallelic sites only, no indels, and no multi-nucleotide polymorphisms. Nuclear and mitochondrial genome
+java -Xmx16g -jar /n/sw/fasrcsw/apps/Core/GenomeAnalysisTK/3.4.46-fasrc01/GenomeAnalysisTK.jar \
+-T SelectVariants \
+-R /n/regal/pringle_lab/koleaz/mitosnps/nc12_mito_star.fa \
+-V 2mm_joint_genotype_filtered.vcf \
+-o 2mm_joint_genotype_filtered_select.vcf \
+--selectTypeToInclude SNP \
+--restrictAllelesTo BIALLELIC
+
+#selecting biallelic sites only, no indels, and no multi-nucleotide polymorphisms. Mitochondrial genome
+java -Xmx16g -jar /n/sw/fasrcsw/apps/Core/GenomeAnalysisTK/3.4.46-fasrc01/GenomeAnalysisTK.jar \
+-T SelectVariants \
+-R /n/regal/pringle_lab/koleaz/mitosnps/mito.fa \
+-V mito_joint_genotype_filtered.vcf \
+-o mito_joint_genotype_filtered_select.vcf \
+--selectTypeToInclude SNP \
+--restrictAllelesTo BIALLELIC
+
+#selecting only mitochondrial snps from nuclear + mitochondrial genome snps
+java -Xmx8g -jar /n/sw/fasrcsw/apps/Core/GenomeAnalysisTK/3.4.46-fasrc01/GenomeAnalysisTK.jar \
+-T SelectVariants \
+-R /n/regal/pringle_lab/koleaz/mitosnps/nc12_mito_star.fa \
+-V 2mm_joint_genotype_filtered.vcf \
+-o 2mm_joint_genotype_filtered_select_mito.vcf \
+-L Chromosome_10.21
+
