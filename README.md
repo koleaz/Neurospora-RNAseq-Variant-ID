@@ -1,4 +1,5 @@
 # Introduction
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.46345.svg)](http://dx.doi.org/10.5281/zenodo.46345)
 This readme describes the various shell scripts and commands used to
 identify Single Nucleotide Variants from RNAseq data of _Neurospora
 crassa_ strains in the nuclear and mitochondrial genome. This analysis
