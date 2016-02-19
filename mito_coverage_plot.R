@@ -22,7 +22,8 @@ exons$yend <- 24
 exons$ystart <- 24
 
 #Specify loaction of variant sites ring
-snps$y<-9
+snps_ac <- merge(mito_coverage, snps, by.x="POS", by.y="pos")
+snps$y<-snps_ac$AN
 
 #Plot Allele Number across mitochondrial genome
 ggplot(mito_coverage, aes(x=POS, y=AN)) + 
